@@ -25,27 +25,27 @@ function App() {
     if (carouselRef.current) {
       animate(
         carouselRef.current,
-        { transform: "translateX(-50%)" },
-        { duration: 40, repeat: Infinity, easing: "linear" }
+        { x: "-50%" }, // Changed transform to x
+        { duration: 40, repeat: Infinity, ease: "linear" } // Changed easing to ease
       );
     }
 
     // Reveal animations for sections
-    inView('.reveal-up', ({ target }) => {
+    inView('.reveal-up', (info) => {
       animate(
-        target,
-        { opacity: [0, 1], transform: ["translateY(50px)", "translateY(0)"] },
-        { duration: 0.8, easing: [0.17, 0.55, 0.55, 1] }
+        info,
+        { opacity: [0, 1], y: [50, 0] }, // transform -> y
+        { duration: 0.8, ease: [0.17, 0.55, 0.55, 1] } // easing -> ease
       );
     });
 
     // Staggered lists
-    inView('.stagger-list', ({ target }) => {
-      const items = target.querySelectorAll('.stagger-item');
+    inView('.stagger-list', (info) => {
+      const items = info.querySelectorAll('.stagger-item');
       animate(
         items,
-        { opacity: [0, 1], transform: ["translateY(30px)", "translateY(0)"] },
-        { delay: stagger(0.1), duration: 0.6, easing: [0.17, 0.55, 0.55, 1] }
+        { opacity: [0, 1], y: [30, 0] }, // transform -> y
+        { delay: stagger(0.1), duration: 0.6, ease: [0.17, 0.55, 0.55, 1] } // easing -> ease
       );
     });
 
